@@ -1,15 +1,30 @@
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from "react-router";
+import { useParams } from "react-router-dom";
 
 function AktualnyMiesiac() {
-  // Hook useParams odczytuje parametry z URL (np. { nazwaMiesiaca: 'lipiec' })  
-  const { nazwaMiesiaca} = useParams();
+  const { nazwaMiesiaca } = useParams();
+  const [parametryQuery, setParametryQuery] = useSearchParams();
+  const zares = parametryQuery.get("zakres");
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">
-        Podsumowanie dla miesiąca: <span className="capitalize text-blue-600">{nazwaMiesiaca}</span>
-      </h1>
-      <p>Tutaj pojawią się szczegółowe dane, wykresy i transakcje dla wybranego miesiąca.</p>      
+    <div className="grid grid-flow-col[auto,1fr] gap-x-2 items-center mb-4">
+      
+      <p className="text-2xl font-bold">Podsumowanie dla miesiąca:</p>
+
+      
+      <span className="text-2xl font-bold capitalize text-blue-600">
+        {nazwaMiesiaca}
+      </span>
+
+      
+      <p>Dokładnie:</p>
+      
+      <span>{zares}</span>
+
+      <p>
+        Tutaj pojawią się szczegółowe dane, wykresy i transakcje dla wybranego
+        miesiąca.
+      </p>
     </div>
   );
 }
