@@ -2,15 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply bg-gray-100;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Definicje niestandardowych klas dla układu */
+.uklad-aplikacji {
+  @apply grid grid-rows-[auto,1fr] h-screen;
+}
+
+.uklad-naglowek {
+  @apply bg-green-900 text-white p-4 shadow-md;
+}
+
+.uklad-glowny-kontener {
+  @apply flex flex-1;
+}
+
+.uklad-panel-boczny {
+  @apply w-64 bg-gray-800 text-white p-4;
+}
+.uklad-panel-boczny-prawy{
+  @apply w-64 bg-blue-500 text-gray-100 p-4;
+}
+
+.uklad-tresc {
+  @apply flex-1 p-6;
 }
