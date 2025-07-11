@@ -2,7 +2,7 @@ import "./index.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import AktualnyMiesiac from "./AktualnyMiesiac.js";
 import Formularz from "./formularz.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   // Dane z miesiącami
@@ -17,8 +17,12 @@ function App() {
     setDaneFormularzy((poprzednieWpisy) => ({
       ...poprzednieWpisy,
       [klucz]: [...(poprzednieWpisy[klucz] || []), nowaWartosc],
-    }));
+    }));    
   };
+  // do debugowania
+  // useEffect(()=>{
+  //   console.log("Aktualny stan daneFormularzy:", daneFormularzy);
+  // }, [daneFormularzy])
   return (
     <BrowserRouter>
       <div className="grid grid-rows-[auto,1fr] h-screen bg-gray-300 font-sans">
