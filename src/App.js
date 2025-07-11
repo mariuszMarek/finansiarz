@@ -2,6 +2,7 @@ import "./index.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import AktualnyMiesiac from "./AktualnyMiesiac.js";
 import Formularz from "./formularz.js";
+import { useState } from "react";
 
 function App() {
   // Dane z miesiącami
@@ -10,10 +11,17 @@ function App() {
     "2025.08.10-2025.09.09": "sierpień",
     "2025.09.10-2025.10.09": "wrzesień",
   };
+  const [daneFormularzy, setDaneFormularzy] = useState({});
 
+  const dodajeDane = (klucz, nowaWartosc) => {
+    setDaneFormularzy((poprzednieWpisy) => ({
+      ...poprzednieWpisy,
+      [klucz]: [...(poprzednieWpisy[klucz] || []), nowaWartosc],
+    }));
+  };
   return (
     <BrowserRouter>
-      <div className="grid grid-rows-[auto,1fr] h-screen bg-gray-100 font-sans">
+      <div className="grid grid-rows-[auto,1fr] h-screen bg-gray-300 font-sans">
         <header className="bg-green-900 text-white p-4 shadow-md">
           <h1 className="text-xl font-bold">
             <Link to="/">Budżet domowy - v0.0.2</Link>
@@ -44,9 +52,11 @@ function App() {
                 path="/miesiac/:nazwaMiesiaca"
                 element={<AktualnyMiesiac />}
               />
-              <Route path="/formularz/:nazwaFormularza" element={<Formularz />}/>
-              <Route path="/opcje"/>
-
+              <Route
+                path="/formularz/:nazwaFormularza"
+                element={<Formularz dodajWpis={dodajeDane} />}
+              />
+              <Route path="/opcje" />
             </Routes>
           </main>
 
